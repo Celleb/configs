@@ -13,6 +13,17 @@
         "assets": ["packages/envample/*.md"]
       }
     },
+    "build-exec": {
+      "executor": "@nrwl/workspace:run-commands",
+      "dependsOn": ["build"],
+      "options": {
+        "commands": [
+          {
+            "command": "chmod u+x ./dist/packages/envample/bin/run.js"
+          }
+        ]
+      }
+    },
     "publish": {
       "executor": "@nrwl/workspace:run-commands",
       "options": {
@@ -21,7 +32,7 @@
       "dependsOn": [
         {
           "projects": "self",
-          "target": "build"
+          "target": "build-exec"
         }
       ]
     },
