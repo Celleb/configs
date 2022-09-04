@@ -44,9 +44,7 @@ export function envample(inputFile?: string, outputFile?: string) {
         useValue = false;
       })
       .on('close', () => {
-        process.stdout.write(
-          `🎉 ${envExampleFile} generated from ${envFile} 🚀`
-        );
+        console.info(`🎉 ${envExampleFile} generated from ${envFile} 🚀`);
         writeFileSync(envExampleFile, envs.join('\r\n'), 'utf8');
         return res(null);
       });

@@ -7,7 +7,7 @@ describe('envample', () => {
   });
 
   it('generates .env.example file from .env file when no paths provided', async () => {
-    jest.spyOn(process.stdout, 'write').mockImplementation(jest.fn());
+    jest.spyOn(console, 'info').mockImplementation(jest.fn());
     copyFileSync('packages/envample/test-data/.env', '.env');
     await envample();
     expect(readFileSync('.env.example')).toEqual(
@@ -15,7 +15,7 @@ describe('envample', () => {
     );
     unlinkSync('.env.example');
     unlinkSync('.env');
-    expect(process.stdout.write).toHaveBeenCalledWith(
+    expect(console.info).toHaveBeenCalledWith(
       `🎉 .env.example generated from ${process.cwd()}/.env 🚀`
     );
   });

@@ -7,7 +7,7 @@ function run() {
 
   const isHelp = args.includes(`--help`) || args.includes(`-h`);
   if (isHelp) {
-    process.stdout.write(
+    console.info(
       `Usage: envample [.env] [.env.example], defaults to .env and .env.example is no arguments are provided`
     );
     return Promise.resolve();
