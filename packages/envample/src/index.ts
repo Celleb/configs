@@ -1,1 +1,1 @@
-export * from './lib/envample';
+export * from './envample';
