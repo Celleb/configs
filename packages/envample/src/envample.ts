@@ -21,8 +21,19 @@ export function envample(inputFile?: string, outputFile?: string) {
     const envs: string[] = [];
     let value: string | undefined;
     let useValue = false;
+    let ignoreNext = false;
     stream
       .on('line', (line) => {
+        if (ignoreNext) {
+          ignoreNext = false;
+          return;
+        }
+
+        if (line.startsWith('# ignore')) {
+          ignoreNext = true;
+          return;
+        }
+
         if (line.startsWith('# example')) {
           const [, ...example] = line.split('=');
           if (example?.length) {
@@ -32,10 +43,12 @@ export function envample(inputFile?: string, outputFile?: string) {
           }
           envs.push(line);
           return;
-        } else if (line.startsWith('#') || line.trim() === '') {
-          value = undefined;
-          useValue = false;
+        }
+
+        if (line.startsWith('#') || line.trim() === '') {
           envs.push(line);
+          useValue = false;
+          value = undefined;
           return;
         }
         const [left, ...right] = line.split('=');

@@ -1,6 +1,6 @@
 {
   "name": "envample",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "license": "MIT",
   "bin": "bin/run.js",
   "description": "Generates .env.example from your .env file",
